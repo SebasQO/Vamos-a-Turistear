@@ -23,9 +23,6 @@ public class Conexion {
             
             conectar = DriverManager.getConnection(cadena,usuario,contrasena);
             
-            JOptionPane.showMessageDialog(null, "Base de Datos conectada con exito!!!");
-            
-            
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos:" + e.toString());

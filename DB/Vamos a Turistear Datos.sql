@@ -157,13 +157,31 @@ DBCC CHECKIDENT('dbo.Usuario', RESEED, 0)
 
 
 SELECT 
+re.ID_Reseña,
 si.ID_Sitio, 
-us.ID_Usuario, 
+us.Nombre, 
 re.Titulo_Reseña, 
 re.Descripcion_Reseña
 
 FROM dbo.Reseña as re
-JOIN dbo.Sitio AS si
-JOIN dbo.Usuario AS us
+JOIN dbo.Sitio si ON si.ID_Sitio = re.ID_Sitio
+JOIN dbo.Usuario us ON us.ID_Usuario = re.ID_Usuario
 
-ON Orders.CustomerID = Customers.CustomerID;
+SELECT * FROM dbo.Catarata;
+
+/*Se llaman varias tablas como detalles catarata y direccion*/
+SELECT 
+ca.ID_Catarata,
+ca.Nombre_Sitio AS Nombre_Catarata,
+ca.Distancia,
+di.Provincia,
+di.Canton,
+di.Distrito,
+di.Codigo_Postal,
+di.Direccion_Detallada
+
+FROM dbo.Catarata as ca
+JOIN dbo.Detalles de ON de.ID_Detalles = ca.ID_Detalles
+JOIN dbo.Direccion di ON di.ID_Direccion = de.ID_Direccion
+
+
