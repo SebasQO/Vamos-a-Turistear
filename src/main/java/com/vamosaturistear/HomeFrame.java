@@ -302,7 +302,7 @@ public class HomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_lblUsuariosCountMouseClicked
 
     private void lblSitiosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSitiosMouseClicked
-        AgregarSitiosFrame objSitios = new AgregarSitiosFrame();
+        SitiosFrame objSitios = new SitiosFrame();
         objSitios.setVisible(true);
     }//GEN-LAST:event_lblSitiosMouseClicked
 

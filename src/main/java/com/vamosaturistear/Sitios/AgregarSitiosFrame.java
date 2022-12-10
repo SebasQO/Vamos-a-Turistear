@@ -19,6 +19,8 @@ public class AgregarSitiosFrame extends javax.swing.JFrame {
     public AgregarSitiosFrame() {
         initComponents();
         
+        setDefaultCloseOperation(AgregarSitiosFrame.DISPOSE_ON_CLOSE);
+        
          
     }
 

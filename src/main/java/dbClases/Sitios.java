@@ -3,12 +3,16 @@ package dbClases;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -363,4 +367,47 @@ public class Sitios {
         }
     }
 
+    
+    public void mostrarDatosTable(JTable jTableSitios){
+        
+        dbClases.Conexion objConexion = new dbClases.Conexion();
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        String consulta = "SELECT si.Ficha_Sitio, ca.Nombre_Sitio, di.Provincia FROM dbo.Sitio as si JOIN dbo.Catarata ca ON ca.ID_Sitio = si.ID_Sitio JOIN dbo.Detalles de ON de.ID_Detalles = ca.ID_Detalles JOIN dbo.Direccion di ON di.ID_Direccion = de.ID_Direccion";
+        
+         modelo.addColumn("Ficha_Sitio");
+         modelo.addColumn("Nombre_Sitio");
+         modelo.addColumn("Provincia");
+         
+         jTableSitios.setModel(modelo);
+         
+         String [] datos = new String[3];
+         
+         Statement st;
+         
+         try {
+             
+             st = objConexion.conexion().createStatement();
+             ResultSet rs = st.executeQuery(consulta);
+             
+             while (rs.next()) {         
+                 
+                 datos[0] = rs.getString(1);
+                 datos[1] = rs.getString(2);
+                 datos[2] = rs.getString(3);   
+                 modelo.addRow(datos);
+             }
+             
+             jTableSitios.setModel(modelo);
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Error en la tabla: " + e.toString());
+        }
+
+        
+    
+    }
+    
 }
